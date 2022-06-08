@@ -17,3 +17,4 @@ winter-horrorland:monster-christmas:5
 senpai:senpai:6
 roses:senpai:6
 thorns:spirit:6
+test:sonic:6
