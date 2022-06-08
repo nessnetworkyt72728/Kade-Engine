@@ -389,6 +389,27 @@ class Character extends FlxSprite
 				playAnim('idle');
 			default:
 				parseDataFile();
+				
+			case 'sonic':
+				var tex = Paths.getSparrowAtlas('sonic', 'shared', true);
+				frames = tex;
+
+				trace(tex.frames.length);
+
+				animation.addByPrefix('idle', 'sonic idle', 24, false);
+				animation.addByPrefix('singUP', 'sonic up', 24, false);
+				animation.addByPrefix('singLEFT', 'sonic left', 24, false);
+				animation.addByPrefix('singRIGHT', 'sonic right', 24, false);
+				animation.addByPrefix('singDOWN', 'sonic down', 24, false);
+				animation.addByPrefix('hey', 'sonic hey', 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
+
+				barColor = 0xFF31b0d1;
+
+				flipX = true;
 		}
 
 		if (curCharacter.startsWith('bf'))
