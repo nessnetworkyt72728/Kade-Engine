@@ -4,6 +4,9 @@ on:
     branches:
       - main
   workflow_dispatch:
+  
+# Controls when the workflow will run
+on: [push, pull_request]
 
 jobs:
   build:
