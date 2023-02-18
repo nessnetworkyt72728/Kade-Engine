@@ -3,7 +3,6 @@ name: HaxeFlixel CI
 # Controls when the workflow will runon: [push, pull_request]
 on: [push, pull_request]
 
-
   push:
 
     branches:
