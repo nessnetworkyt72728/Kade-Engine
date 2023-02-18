@@ -1,110 +1,41 @@
-name: HaxeFlixel CI
+name: Kade-Engine CI
 
 on:
   push:
+    branches: [ main ]
   pull_request:
+    branches: [ main ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [14.x]
         
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      - name: Setup Haxe
-      - uses: actions/checkout@v2
-      - uses: krdlab/setup-haxe@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          haxe-version: 4.1.5
-      - name: Setup Lime
-
-        run: haxelib git lime https://github.com/openfl/lime.git 7.9.0
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup OpenFL
-
-        run: haxelib install openfl 9.1.0
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup HaxeFlixel
-
-        run: haxelib install flixel 4.9.0
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup flixel-tools
-
-        run: haxelib install flixel-tools 1.9.0
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup flixel-ui
-
-        run: haxelib install flixel-ui 2.5.0
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup hscript
-
-        run: haxelib install hscript 2.4.0
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup flixel-addons
-
-        run: haxelib install flixel-addons 2.7.0
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup actuate
-
-        run: haxelib install actuate 1.8.9
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup linc_luajit
-
-        run: haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit.git
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup hxvm-luajit
-
-        run: haxelib git hxvm-luajit https://github.com/nebulazorua/hxvm-luajit
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup faxe
-
-        run: haxelib git faxe https://github.com/uhrobots/faxe
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup polymod
-
-        run: haxelib git polymod https://github.com/MasterEric/polymod.git
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup discord_rpc
-
-        run: haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc.git
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Setup extension-webm
-
-        run: haxelib git extension-webm https://github.com/KadeDev/extension-webm.git
-
-        working-directory: ${{ github.workspace }}
-
-      - name: Build for ${{ matrix.os }}
-
-        run: lime build
-
+          node-version: ${{ matrix.node-version }}
+        
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build project
+        run: npm run build
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: built-artifacts
+          path: |
+            dist/
+            test-reports/
