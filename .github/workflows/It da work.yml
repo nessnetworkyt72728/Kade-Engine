@@ -1,6 +1,4 @@
 name: Friday Night Funkin' Build with Kade Engine
-
-  workflow_dispatch:
   
 # Controls when the workflow will run
 on: [push, pull_request]
