@@ -1,8 +1,5 @@
 name: Friday Night Funkin' Build with Kade Engine
-on:
-  push:
-    branches:
-      - main
+
   workflow_dispatch:
   
 # Controls when the workflow will run
