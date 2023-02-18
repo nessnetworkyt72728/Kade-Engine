@@ -1,40 +1,22 @@
 name: HaxeFlixel CI
 
-# Controls when the workflow will runon: [push, pull_request]
-on: [push, pull_request]
-
-  push:
-
-    branches:
-
-      - main
+push on: [push, pull_request]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
-
       matrix:
-
         os: [ubuntu-latest, macos-latest, windows-latest]
-
+        
     steps:
-
       - name: Checkout code
-
         uses: actions/checkout@v2
-
+        
       - name: Setup Haxe
-
         uses: HaxeFoundation/setup-haxe@v1.4.3
-
         with:
-
           haxe-version: 4.1.5
-
       - name: Setup Lime
 
         run: haxelib git lime https://github.com/openfl/lime.git 7.9.0
