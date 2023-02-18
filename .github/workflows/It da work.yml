@@ -1,5 +1,8 @@
 name: Kade-Engine CI
 
+# Controls when the workflow will run
+on: [push, pull_request]
+
 on:
   push:
     branches: [ main ]
