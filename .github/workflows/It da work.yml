@@ -56,8 +56,12 @@ jobs:
           zip -r "linux.zip" "export/release/linux/bin"
           zip -r "html5.zip" "export/release/html5/bin"
         if: success()
-      - name: Upload Builds
+ - name: Upload Builds
   uses: actions/upload-artifact@v2
   with:
     name: Builds
-    path: windows.zip mac.zip linux.zip html5.zip
+    path:   
+      - windows.zip
+      - mac.zip
+      - linux.zip
+      - html5.zip
