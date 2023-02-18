@@ -57,11 +57,7 @@ jobs:
           zip -r "html5.zip" "export/release/html5/bin"
         if: success()
       - name: Upload Builds
-        uses: actions/upload-artifact@v2
-        with:
-          name: Builds
-          path: 
-            - windows.zip
-            - mac.zip
-            - linux.zip
-            - html5.zip
+  uses: actions/upload-artifact@v2
+  with:
+    name: Builds
+    path: windows.zip mac.zip linux.zip html5.zip
