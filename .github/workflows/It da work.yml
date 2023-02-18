@@ -50,12 +50,12 @@ jobs:
       - name: Build for HTML5
         run: lime build html5
       - name: Archive Builds
-        if: success()
         run: |
           zip -r "windows.zip" "export/release/windows/bin"
           zip -r "mac.zip" "export/release/mac/bin"
           zip -r "linux.zip" "export/release/linux/bin"
           zip -r "html5.zip" "export/release/html5/bin"
+        if: success()
       - name: Upload Builds
         uses: actions/upload-artifact@v2
         with:
