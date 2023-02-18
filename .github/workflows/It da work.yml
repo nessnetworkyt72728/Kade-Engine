@@ -60,8 +60,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Builds
-          path: |
-            windows.zip
-            mac.zip
-            linux.zip
-            html5.zip
+          path: 
+            - windows.zip
+            - mac.zip
+            - linux.zip
+            - html5.zip
